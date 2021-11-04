@@ -9,71 +9,24 @@
 #include <netdb.h>
 #include <sys/socket.h>
 
+#define FIN 0
+#define BYTE_ERROR -1
+#define EMPTY_FD -1
+#define SUCCESS 1
+#define ERROR_MANDAR "error al mandar en socket"
+#define ERROR_RECIVIR "error al recivir en socket"
+
 class Socket
 {
 protected:
 	int fd;
+	explicit Socket(int fd);
+	Socket acceptS(int fd);
 public:
-    Socket(int fd);
+	Socket(Socket && other);
     int read(char *buf, int exp_len);
     int write(char *buf, int exp_len);
     ~Socket();
 };
-
-Socket::Socket(int fd) : fd(fd){
-}
-
-int Socket::read(char *buf, int exp_len){
-	int bytes = recv(fd, buf, exp_len, 0);
-	if (bytes == -1){
-		// sockt_destroy(skt);
-		// perror(ERROR_MSG); TODO
-		// return ERROR_NO;
-	}
-	if (bytes==0){
-			return 0;
-	}
-	int bytes_sum = bytes; //bytes enviados hasta ahora
-	while (bytes_sum < exp_len){
-		bytes = recv(fd, &buf[bytes_sum], exp_len-bytes_sum, 0);
-		if (bytes == -1){
-			// sockt_destroy(skt);
-			// perror(ERROR_MSG);
-			// return ERROR_NO;
-		}
-		if (bytes==0){
-			return 0;
-		}
-		bytes_sum += bytes;
-	}
-	buf[exp_len] = '\0';
-	return 1;
-}
-
-int Socket::write(char *buf, int exp_len){
-	int bytes = send(fd, buf, exp_len, 0);
-	if (bytes == -1){
-		// sockt_destroy(skt);
-		// perror(ERROR_MSG);
-		// return ERROR_NO;
-	}
-	int bytes_sum = bytes; //bytes enviados hasta ahora
-	while (bytes_sum < exp_len){
-		bytes = send(fd, &buf[bytes_sum], exp_len-bytes_sum, 0);
-		if (bytes == -1){
-			// sockt_destroy(skt);
-			// perror(ERROR_MSG);
-			// return ERROR_NO;
-		}
-		bytes_sum += bytes;
-	}
-	return 0;
-}
-
-Socket::~Socket(){
-    shutdown(fd, SHUT_RDWR);
-	close(fd);
-}
-
 
 #endif

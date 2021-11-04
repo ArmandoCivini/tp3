@@ -4,12 +4,12 @@
 #include <condition_variable>
 #include <string.h>
 
-SafeQueueString::SafeQueueString(char *nombre) 
+SafeQueueString::SafeQueueString(const std::string& nombre) 
 : size(0), fin(false), nombre(nombre){
 }
 
-bool SafeQueueString::isNombre(char *is_nombre){
-    return (strcmp(this->nombre, is_nombre)==0);
+bool SafeQueueString::isNombre(const std::string& is_nombre){
+    return (nombre==is_nombre);
 }
 
 void SafeQueueString::push(std::string dato){
