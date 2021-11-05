@@ -12,7 +12,7 @@ bool SafeQueueString::isNombre(const std::string& is_nombre){
     return (nombre==is_nombre);
 }
 
-void SafeQueueString::push(std::string dato){
+void SafeQueueString::push(const std::string& dato){
     std::lock_guard<std::mutex> lock(m);
     cola.push(dato);
     ++this->size;

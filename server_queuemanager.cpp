@@ -4,7 +4,7 @@
 QueueManager::QueueManager(){
 }
 
-bool QueueManager::queueExiste(std::string nombre){
+bool QueueManager::queueExiste(const std::string& nombre){
     for (auto& cola : colas){
         if (cola->isNombre(nombre)){
             return true;
@@ -13,19 +13,22 @@ bool QueueManager::queueExiste(std::string nombre){
     return false;
 }
 
-std::string QueueManager::popIn(std::string nombre){
+std::string QueueManager::popIn(const std::string& nombre){
+    m.lock();
     std::string mensaje("");
     bool termino;
     for (auto& cola : colas){
         if (cola->isNombre(nombre)){
+            m.unlock();
             mensaje = cola->pop(&termino);
             return mensaje;
         }
     }
+    m.unlock();
     return mensaje;
 }
 
-void QueueManager::pushIn(std::string nombre, std::string mensaje){
+void QueueManager::pushIn(const std::string& nombre, const std::string& mensaje){
     std::lock_guard<std::mutex> lock(m);
     for (auto& cola : colas){
         if (cola->isNombre(nombre)){
@@ -35,7 +38,7 @@ void QueueManager::pushIn(std::string nombre, std::string mensaje){
     }
 }
 
-void QueueManager::nuevaQueue(std::string nombre){
+void QueueManager::nuevaQueue(const std::string& nombre){
     std::lock_guard<std::mutex> lock(m);
     std::string nombre_s(nombre);
     if (queueExiste(nombre)) return;

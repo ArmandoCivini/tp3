@@ -14,20 +14,20 @@
 Admin::Admin(char *host, char *port): skt(host, port){
 }
 
-void Admin::definir(std::string cola){
+void Admin::definir(const std::string& cola){
     protocolo.enviarMensajeDefinir(cola, skt);
 }
 
-void Admin::push(std::string cola, std::string a_escribir){
+void Admin::push(const std::string& cola, const std::string& a_escribir){
     protocolo.enviarMensajePush(cola, a_escribir, skt);
 }
 
-void Admin::pop(std::string cola){
+void Admin::pop(const std::string& cola){
     protocolo.enviarMensajePop(cola, skt);
     protocolo.leerMensaje(skt);
 }
 
-bool Admin::operar(std::string commando){
+bool Admin::operar(const std::string& commando){
     std::istringstream stream(commando);
     std::string accion;
     std::getline(stream, accion, ' ');

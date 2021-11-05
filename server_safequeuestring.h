@@ -18,7 +18,7 @@ private:
 public:
     explicit SafeQueueString(const std::string& is_nombre);
     bool isNombre(const std::string& nombre);
-    void push(std::string dato);
+    void push(const std::string& dato);
     std::string pop(bool *termino);
     void end();
     ~SafeQueueString();

@@ -22,7 +22,7 @@ class ProtocoloServer: public Protocolo
 private:
 public:
     ProtocoloServer();
-    void crearMensaje(int largo, std::string mensaje, Socket& skt);
+    void crearMensaje(int largo, const std::string& mensaje, Socket& skt);
     char leerAccion(Socket& skt);
     ~ProtocoloServer();
 };

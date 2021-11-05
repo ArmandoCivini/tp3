@@ -23,10 +23,10 @@
 class ProtocoloCliente : public Protocolo
 {
 private:
-    void agregarString(int largo, std::string destino, std::string mensaje);
     int construirMensajeCola(char accion, const std::string& cola, std::vector<char>& mensaje);
     int construirMensajeDefinir(const std::string& cola, std::vector<char>& mensaje);
-    int construirMensajePush(std::string cola, std::string a_escribir, std::vector<char>& mensaje);
+    int construirMensajePush
+    (const std::string& cola, const std::string& a_escribir, std::vector<char>& mensaje);
     int construirMensajePop(const std::string& cola, std::vector<char>& mensaje);
 public:
     ProtocoloCliente();

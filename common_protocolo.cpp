@@ -12,7 +12,7 @@
 Protocolo::Protocolo(){
 }
 
-uint16_t Protocolo::char2toInt16(char numero[INT16]){
+uint16_t Protocolo::char2toInt16(const char numero[INT16]){
     uint16_t num = *(uint16_t *)numero;
     return ntohs(num);
 }
@@ -22,15 +22,15 @@ void Protocolo::int16toChar2(uint16_t numero, char caracteres[INT16]){
     memcpy(caracteres, &numero, INT16);
 }
 
-uint16_t Protocolo::largoMensaje(std::vector<char> mensaje){
+uint16_t Protocolo::largoMensaje(const std::vector<char> mensaje){
     return char2toInt16(mensaje.data());
 }
 
-std::string Protocolo::mensaje(std::vector<char> mensaje){
+std::string Protocolo::mensaje(const std::vector<char> mensaje){
     return std::string(mensaje.begin(), mensaje.end());
 }
 
-void Protocolo::agregarString(int largo, char *destino, std::vector<char>& mensaje){
+void Protocolo::agregarString(int largo, char *destino, const std::vector<char>& mensaje){
     int16toChar2(largo, destino);
     strncpy(&destino[INT16], mensaje.data(), largo);
 }

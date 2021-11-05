@@ -37,7 +37,7 @@ int ProtocoloCliente::construirMensajeDefinir(const std::string& cola, std::vect
 }
 
 int ProtocoloCliente::construirMensajePush
-(std::string cola, std::string a_escribir, std::vector<char>& mensaje){
+(const std::string& cola, const std::string& a_escribir, std::vector<char>& mensaje){
     uint16_t largo_cola = cola.length();
     uint16_t largo_a_escribir = a_escribir.length();
     mensaje.resize(largo_cola+largo_a_escribir+DOBLE_HEAD_TAM);

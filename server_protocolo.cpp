@@ -18,7 +18,7 @@
 ProtocoloServer::ProtocoloServer(){
 }
 
-void ProtocoloServer::crearMensaje(int largo, std::string mensaje, Socket& skt){
+void ProtocoloServer::crearMensaje(int largo, const std::string& mensaje, Socket& skt){
     std::vector<char> mnsj(largo+INT16);
     std::vector<char> mensaje_v(mensaje.begin(), mensaje.end());
     agregarString(largo, mnsj.data(), mensaje_v);

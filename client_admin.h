@@ -26,12 +26,12 @@ class Admin
 private:
     ClientSocket skt;
     ProtocoloCliente protocolo;
-    void definir(std::string cola);
-    void push(std::string cola, std::string a_escribir);
-    void pop(std::string cola);
+    void definir(const std::string& cola);
+    void push(const std::string& cola, const std::string& a_escribir);
+    void pop(const std::string& cola);
 public:
     Admin(char *host, char *port);
-    bool operar(std::string commando);
+    bool operar(const std::string& commando);
     ~Admin();
 };
 

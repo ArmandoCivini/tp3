@@ -11,12 +11,12 @@ class QueueManager
 private:
     std::vector<std::shared_ptr<SafeQueueString>> colas;
     std::mutex m;
-    bool queueExiste(std::string nombre);
+    bool queueExiste(const std::string& nombre);
 public:
     QueueManager();
-    std::string popIn(std::string nombre);
-    void pushIn(std::string nombre, std::string mensaje);
-    void nuevaQueue(std::string nombre);
+    std::string popIn(const std::string& nombre);
+    void pushIn(const std::string& nombre, const std::string& mensaje);
+    void nuevaQueue(const std::string& nombre);
     ~QueueManager();
 };
 

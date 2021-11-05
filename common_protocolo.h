@@ -15,9 +15,9 @@ class Protocolo
 {
 private:
 protected:
-    uint16_t char2toInt16(char *numero);
+    uint16_t char2toInt16(const char *numero);
     void int16toChar2(uint16_t numero, char caracteres[INT16]);
-    void agregarString(int largo, char *destino, std::vector<char>& mensaje);
+    void agregarString(int largo, char *destino, const std::vector<char>& mensaje);
 public:
     Protocolo();
     uint16_t largoMensaje(std::vector<char> mensaje);
